@@ -1,0 +1,45 @@
+{
+  "name": "saans",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Saans: a GenAI-assisted urban air quality assistant for families and communities in India.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run lint && npm test",
+    "smoke:live": "node scripts/smoke-live.mjs"
+  },
+  "dependencies": {
+    "next": "15.5.28",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@testing-library/jest-dom": "6.4.6",
+    "@testing-library/react": "16.3.3",
+    "@testing-library/user-event": "14.6.7",
+    "autoprefixer": "10.4.19",
+    "eslint": "^9.0.0",
+    "eslint-plugin-jsx-a11y": "^6.10.0",
+    "eslint-plugin-react": "^7.37.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "globals": "^15.0.0",
+    "jest": "29.7.0",
+    "jest-axe": "11.0.0",
+    "jest-environment-jsdom": "29.7.0",
+    "postcss": "8.5.28",
+    "prettier": "^3.0.0",
+    "tailwindcss": "3.4.19"
+  },
+  "overrides": {
+    "postcss": "8.5.28",
+    "postcss-selector-parser": "7.1.7"
+  }
+}
