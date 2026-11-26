@@ -18,23 +18,23 @@ If Gemini is down, the full plan still works.
 | Real-time AQI from a reliable source    | Open-Meteo Air Quality API (CAMS model, US AQI, hourly 2-day forecast)                        | `services/openMeteo.js`, `lib/air.js`                  |
 | Show source and timestamp               | Source link, data time (IST), staleness notice on the air card                                | `components/AirCard.jsx`, `lib/aqi.js`                 |
 | All of India, user-selectable location  | Place search filtered to India, quick-pick cities                                             | `services/openMeteo.js`, `components/LocationForm.jsx` |
-| Personalised by household and lifestyle | Children, seniors, respiratory, pregnancy; commute, distance, outdoor activity, cooking, home | `lib/profile.js`, `lib/rules.js`                       |
-| Low-emission daily routines             | Best 2-hour window, worst hour, routine actions                                               | `lib/planner.js`, `lib/rules.js`                       |
-| Indoor air hacks                        | Sealing, purifier, cooking, dust, and an honest note on plants                                | `lib/rules.js`                                         |
-| Sustainable alternatives                | Transit, carpool, walk/cycle, fewer trips, no idling or burning                               | `lib/rules.js`                                         |
+| Personalised by household and lifestyle | Children, seniors, respiratory, pregnancy; commute, distance, outdoor activity, cooking, home | `lib/profile.js`, `lib/rules/`                         |
+| Low-emission daily routines             | Best 2-hour window, worst hour, routine actions                                               | `lib/planner.js`, `lib/rules/routineRules.js`          |
+| Indoor air hacks                        | Sealing, purifier, cooking, dust, and an honest note on plants                                | `lib/rules/indoorRules.js`                             |
+| Sustainable alternatives                | Transit, carpool, walk/cycle, fewer trips, no idling or burning                               | `lib/rules/greenerRules.js`                            |
 | Explain the impact of choices           | kg CO₂e per week using WRI India factors, with sources                                        | `lib/impact.js`, `lib/constants.js`                    |
 | Sample inputs for the evaluator         | Five ready households, one click each                                                         | `lib/personas.js`, `components/PersonaPicker.jsx`      |
 
 ## Evaluation criteria → evidence
 
-| Criterion         | What we did                                                                                                                                                                      |
-| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Code quality      | Pure logic separated from I/O; one ESM style; JSDoc on every export; ESLint 9 and Prettier configs; constants in one file                                                        |
-| Security          | Strict CSP (`connect-src 'self'`), security headers, API key only server-side and sent in a header, input validation, body-size cap, rate limiting, server re-fetches air itself |
-| Efficiency        | One AI route, one Gemini call (two at most), no tool declarations, 10-minute air cache, profile changes re-plan with no network call                                             |
-| Testing           | Unit tests for every `lib/` module, service, AI and route tests, jsdom flows, axe audits, architecture rules (`tests/`)                                                          |
-| Accessibility     | Skip link, landmarks, one h1 per page, labelled controls, AA colour contrast (tested in `tests/colorContrast.test.js`), axe checks on every state                                |
-| Problem alignment | See the requirement table above                                                                                                                                                  |
+| Criterion         | What we did                                                                                                                                                                                             |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Code quality      | Pure logic separated from I/O; one ESM style; JSDoc on every export; small single-purpose modules (rules split by area); ESLint 9 and Prettier configs; CI workflow; MIT licence; constants in one file |
+| Security          | Strict CSP (`connect-src 'self'`), security headers, API key only server-side and sent in a header, input validation, body-size cap, rate limiting, server re-fetches air itself                        |
+| Efficiency        | One AI route, one Gemini call (two at most), no tool declarations, 10-minute air cache, profile changes re-plan with no network call                                                                    |
+| Testing           | Unit tests for every `lib/` module, service, AI and route tests, jsdom flows, axe audits, architecture rules (`tests/`)                                                                                 |
+| Accessibility     | Skip link, landmarks, one h1 per page, labelled controls, AA colour contrast (tested in `tests/colorContrast.test.js`), axe checks on every state                                                       |
+| Problem alignment | See the requirement table above                                                                                                                                                                         |
 
 ## GenAI usage
 
