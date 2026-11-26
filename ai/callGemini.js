@@ -49,13 +49,18 @@ export async function callGemini({
             ? "The AI service is busy. Please try again in a minute."
             : "The AI service couldn't answer. Please try again.";
         const detail = (await response.text?.().catch(() => "")) ?? "";
-        const error = new ServiceError(message, response.status, `Gemini HTTP ${response.status} (${model}): ${detail.slice(0, 300)}`);
+        const error = new ServiceError(
+          message,
+          response.status,
+          `Gemini HTTP ${response.status} (${model}): ${detail.slice(0, 300)}`,
+        );
         error.retryable = response.status === 429 || response.status >= 500;
         throw error;
       }
       const data = await response.json();
       const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-      if (!text) throw new ServiceError("The AI service returned an empty answer. Please try again.");
+      if (!text)
+        throw new ServiceError("The AI service returned an empty answer. Please try again.");
       return text;
     } catch (error) {
       if (error.name === "AbortError") {

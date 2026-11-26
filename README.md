@@ -46,15 +46,30 @@ If Gemini is down, the full plan still works.
 
 ## Architecture
 
-```
+```text
 Browser (Next.js, React)
-  ├─ POST /api/air      → validate → Open-Meteo geocoding + air quality → normalise → cache
-  └─ POST /api/advice   → validate → re-fetch air → buildAdvice (pure rules) → Gemini → validate → reply
-lib/       pure rules, planner, impact maths, validators (no I/O)
-services/  Open-Meteo calls
-ai/        Gemini call and retry
-server/    shared API handler (rate limit, body cap, errors)
+  |
+  |-- POST /api/air -----> validate -> Open-Meteo geocoding + air quality
+  |                         -> normalise -> 10-minute cache -> reading
+  |
+  '-- POST /api/advice --> validate -> re-fetch air on the server
+                            -> buildAdvice (pure rules, no network)
+                            -> ONE Gemini call (explanations only)
+                            -> validate the reply (ids, numbers, wording)
+                            -> narration  (or plan only, if checks fail)
 ```
+
+| Folder                | Role                                                                                     |
+| --------------------- | ---------------------------------------------------------------------------------------- |
+| `lib/`                | Pure logic with no I/O: verdicts, planner, impact maths, request and AI-reply validators |
+| `lib/rules/`          | The advice rules, split into `routineRules`, `indoorRules` and `greenerRules`            |
+| `services/`           | Open-Meteo calls                                                                         |
+| `ai/`                 | The single Gemini call, prompt building and the corrective retry                         |
+| `server/`             | Shared API handler: rate limit, body-size cap, safe errors                               |
+| `app/`, `components/` | Pages, API routes and the interface                                                      |
+| `tests/`              | Unit, service, route, accessibility and architecture tests                               |
+
+CI (`.github/workflows/ci.yml`) runs format check, lint, tests and a production build on every push.
 
 ## Assumptions and limits
 
