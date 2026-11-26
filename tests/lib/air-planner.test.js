@@ -71,6 +71,15 @@ describe("normalizeGeocodeResponse", () => {
     expect(place.label).toBe("Delhi");
   });
 
+  it("treats a name and its state as the same when only accents differ", () => {
+    const place = normalizeGeocodeResponse({
+      results: [
+        { name: "Haryāna", admin1: "Haryana", country_code: "IN", latitude: 29, longitude: 76 },
+      ],
+    });
+    expect(place.label).toBe("Haryāna");
+  });
+
   it.each([[{}], [{ results: [] }], [null], [{ results: [{ name: "X", country_code: "US" }] }]])(
     "returns null when nothing in India matches: %j",
     (json) => {
