@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { DEFAULT_PROFILE, sanitizeProfile } from "../lib/profile.js";
-import { readSaved, writeSaved } from "./storage.js";
+import { readSaved, writeSaved } from "../client/storage.js";
 
 const MAX_QUERY_LENGTH = 80;
 
 /**
  * The household answers and the place text, remembered in this browser only. Anything read
  * back from storage is re-validated first, because storage can be edited by anyone.
- * @returns {{ profile: import("../lib/profile.js").Profile, setProfile: Function, query: string, setQuery: Function }}
+ * @returns {{ profile: import("../lib/profile.js").Profile, setProfile: (profile: import("../lib/profile.js").Profile) => void, query: string, setQuery: (text: string) => void }}
  */
 export function useHousehold() {
   const [profile, setProfile] = useState(DEFAULT_PROFILE);

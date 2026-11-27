@@ -9,7 +9,7 @@ const LANGUAGE_RULE = {
 
 /**
  * The facts the model may use. Everything here was computed by code, from live data.
- * @param {ReturnType<import("../lib/rules.js").buildAdvice>} advice
+ * @param {ReturnType<typeof import("../lib/rules.js").buildAdvice>} advice
  * @param {import("../lib/profile.js").Profile} profile
  */
 export function buildAdviceFacts(advice, profile) {
@@ -72,7 +72,7 @@ Rules:
 
 /**
  * One Gemini call (two at most, if the first answer fails validation).
- * @param {{ advice: ReturnType<import("../lib/rules.js").buildAdvice>, profile: import("../lib/profile.js").Profile, language: string, question: string }} input
+ * @param {{ advice: ReturnType<typeof import("../lib/rules.js").buildAdvice>, profile: import("../lib/profile.js").Profile, language: string, question: string }} input
  * @returns {Promise<{ headline: string, actions: { id: string, explanation: string }[], answer: string }>}
  */
 export async function runAdvice({ advice, profile, language, question }) {

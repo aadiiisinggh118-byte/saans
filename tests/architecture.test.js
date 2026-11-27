@@ -25,6 +25,8 @@ const sources = [
   ...list("ai", /\.js$/),
   ...list("server", /\.js$/),
   ...list("components", /\.jsx?$/),
+  ...list("hooks", /\.js$/),
+  ...list("client", /\.js$/),
   "app/layout.jsx",
   "app/page.jsx",
   "app/assistant/page.jsx",
@@ -101,6 +103,8 @@ describe("secrets and the AI boundary", () => {
   it("the browser never imports server, service or AI code", () => {
     const client = [
       ...list("components", /\.jsx?$/),
+      ...list("hooks", /\.js$/),
+      ...list("client", /\.js$/),
       "app/layout.jsx",
       "app/page.jsx",
       "app/assistant/page.jsx",
@@ -113,11 +117,7 @@ describe("secrets and the AI boundary", () => {
 
   it("only three small modules call fetch: the Gemini client, the browser's API helper and the air service", () => {
     const callers = sources.filter((file) => /\bfetch\s*\(/.test(code(file)));
-    expect(callers.sort()).toEqual([
-      "ai/callGemini.js",
-      "components/api.js",
-      "services/airService.js",
-    ]);
+    expect(callers.sort()).toEqual(["ai/callGemini.js", "client/api.js", "services/airService.js"]);
   });
 
   it("only the Gemini client, the air-data client and the link constants name an external host", () => {

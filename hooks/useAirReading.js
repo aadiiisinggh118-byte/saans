@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { postJson } from "./api.js";
+import { postJson } from "../client/api.js";
 
 const MINUTE_MS = 60000;
 const MIN_PLACE_LENGTH = 2;

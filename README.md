@@ -59,15 +59,18 @@ Browser (Next.js, React)
                             -> narration  (or plan only, if checks fail)
 ```
 
-| Folder                | Role                                                                                     |
-| --------------------- | ---------------------------------------------------------------------------------------- |
-| `lib/`                | Pure logic with no I/O: verdicts, planner, impact maths, request and AI-reply validators |
-| `lib/rules/`          | The advice rules, split into `routineRules`, `indoorRules` and `greenerRules`            |
-| `services/`           | Open-Meteo calls                                                                         |
-| `ai/`                 | The single Gemini call, prompt building and the corrective retry                         |
-| `server/`             | Shared API handler: rate limit, body-size cap, safe errors                               |
-| `app/`, `components/` | Pages, API routes and the interface                                                      |
-| `tests/`              | Unit, service, route, accessibility and architecture tests                               |
+| Folder        | Role                                                                                     |
+| ------------- | ---------------------------------------------------------------------------------------- |
+| `lib/`        | Pure logic with no I/O: verdicts, planner, impact maths, request and AI-reply validators |
+| `lib/rules/`  | The advice rules, split into `routineRules`, `indoorRules` and `greenerRules`            |
+| `services/`   | Open-Meteo calls                                                                         |
+| `ai/`         | The single Gemini call, prompt building and the corrective retry                         |
+| `server/`     | Shared API handler: rate limit, body-size cap, safe errors                               |
+| `app/`        | Pages, error / loading / not-found pages and the two API routes                          |
+| `components/` | The interface: presentational React components                                           |
+| `hooks/`      | React hooks for state: the household, the air reading, the Gemini explanation            |
+| `client/`     | Browser-side helpers: the API client and local storage                                   |
+| `tests/`      | Unit, service, route, accessibility and architecture tests                               |
 
 CI (`.github/workflows/ci.yml`) runs format check, lint, tests and a production build on every push.
 
@@ -91,6 +94,7 @@ copy .env.example .env.local     # then set GEMINI_API_KEY
 npm run dev                      # http://localhost:3000
 npm run check                    # format check, lint, tests
 npm run build
+npm run typecheck                # type-checks the JavaScript using its JSDoc types
 npm run smoke:live               # live Open-Meteo check, no key needed
 ```
 

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { postJson } from "./api.js";
+import { postJson } from "../client/api.js";
 import { IDLE } from "./useAirReading.js";
 
 const IDLE_AI = { ...IDLE, forProfile: "" };
@@ -7,7 +7,7 @@ const IDLE_AI = { ...IDLE, forProfile: "" };
 /**
  * Asks Gemini (through `/api/advice`) to explain the plan, and clears the old explanation
  * whenever a new place is being checked.
- * @param {{ place: object | undefined, profile: object, airStatus: string }} input
+ * @param {{ place?: { lat: number, lon: number, label: string }, profile: import("../lib/profile.js").Profile, airStatus: string }} input
  */
 export function useGeminiExplanation({ place, profile, airStatus }) {
   const [ai, setAi] = useState(IDLE_AI);

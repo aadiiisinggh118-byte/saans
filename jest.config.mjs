@@ -16,6 +16,8 @@ const config = {
     "server/**/*.js",
     "ai/**/*.js",
     "components/**/*.{js,jsx}",
+    "hooks/**/*.js",
+    "client/**/*.js",
     "app/**/*.{js,jsx}",
   ],
 };

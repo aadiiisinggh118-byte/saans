@@ -7,6 +7,10 @@ export const btnAccent = `${btn} bg-amber text-ink hover:bg-amber-light`;
 export const btnGhost = `${btn} border border-teal text-teal hover:bg-info-bg`;
 export const inputCls = "block w-full rounded-md border border-edge bg-white px-3 py-2 text-ink";
 
+/**
+ * The page title and an optional one-line introduction.
+ * @param {{ title: string, children?: any }} props
+ */
 export function PageHeading({ title, children }) {
   return (
     <header className="mb-6">
@@ -16,6 +20,10 @@ export function PageHeading({ title, children }) {
   );
 }
 
+/**
+ * A bordered section of the page.
+ * @param {{ children?: any, className?: string, [attribute: string]: any }} props
+ */
 export function Panel({ children, className = "", ...rest }) {
   return (
     <section
@@ -27,7 +35,11 @@ export function Panel({ children, className = "", ...rest }) {
   );
 }
 
-/** Label + hint + error wired to the input via aria-describedby. `children` receives the props to spread on the input. */
+/**
+ * Label + hint + error wired to the input via aria-describedby. `children` receives the props
+ * to spread on the input.
+ * @param {{ id: string, label: string, hint?: string, error?: string, children?: (inputProps: object) => any }} props
+ */
 export function Field({ id, label, hint, error, children }) {
   const describedBy =
     [hint && `${id}-hint`, error && `${id}-error`].filter(Boolean).join(" ") || undefined;
@@ -58,6 +70,10 @@ const TONES = {
   info: "bg-info-bg text-info",
 };
 
+/**
+ * A small coloured label.
+ * @param {{ tone?: "ok" | "warn" | "bad" | "info", children?: any }} props
+ */
 export function Badge({ tone = "info", children }) {
   return (
     <span className={`inline-block rounded px-2 py-0.5 text-xs font-bold ${TONES[tone]}`}>
@@ -73,6 +89,10 @@ const NOTICE = {
   ok: "border-ok bg-ok-bg text-ok",
 };
 
+/**
+ * A message box; use `role="alert"` on it for errors.
+ * @param {{ tone?: "ok" | "warn" | "bad" | "info", children?: any, [attribute: string]: any }} props
+ */
 export function Notice({ tone = "info", children, ...rest }) {
   return (
     <div

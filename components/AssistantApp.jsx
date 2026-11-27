@@ -11,9 +11,9 @@ import EmissionSources from "./EmissionSources.jsx";
 import LocationForm from "./LocationForm.jsx";
 import PersonaPicker from "./PersonaPicker.jsx";
 import ProfileForm from "./ProfileForm.jsx";
-import { useAirReading } from "./useAirReading.js";
-import { useGeminiExplanation } from "./useGeminiExplanation.js";
-import { useHousehold } from "./useHousehold.js";
+import { useAirReading } from "../hooks/useAirReading.js";
+import { useGeminiExplanation } from "../hooks/useGeminiExplanation.js";
+import { useHousehold } from "../hooks/useHousehold.js";
 import { Notice, Panel } from "./ui.jsx";
 
 /**

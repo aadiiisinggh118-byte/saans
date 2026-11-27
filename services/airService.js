@@ -9,7 +9,7 @@ import { fetchAir, searchPlace } from "./openMeteo.js";
 export function createAirService({ fetchImpl, now = Date.now, ttlMs = 600000, max = 200 } = {}) {
   const cache = createCache({ max, ttlMs, now });
   // Resolve `fetch` at call time so tests (and the runtime) can replace it.
-  const options = { fetchImpl: fetchImpl ?? ((...args) => globalThis.fetch(...args)), now };
+  const options = { fetchImpl: fetchImpl ?? ((url, init) => globalThis.fetch(url, init)), now };
 
   return {
     /**

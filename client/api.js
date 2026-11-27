@@ -2,7 +2,7 @@
  * POSTs JSON to one of this app's own routes and returns the parsed answer.
  * Throws an Error whose message is safe to show to the user.
  * @param {string} url
- * @param {object} body
+ * @param {Record<string, unknown>} body
  * @returns {Promise<any>}
  */
 export async function postJson(url, body) {
