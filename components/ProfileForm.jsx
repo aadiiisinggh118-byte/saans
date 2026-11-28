@@ -7,6 +7,7 @@ import {
 } from "../lib/profile.js";
 import { Field, inputCls } from "./ui.jsx";
 
+/** A labelled drop-down built from a list of `{ value, label }` options. */
 function Select({ options, ...props }) {
   return (
     <select {...props} className={inputCls}>
@@ -19,6 +20,7 @@ function Select({ options, ...props }) {
   );
 }
 
+/** A labelled checkbox that reports its new state. */
 function Check({ id, label, checked, onChange }) {
   return (
     <label htmlFor={id} className="flex items-start gap-2">
@@ -34,6 +36,10 @@ function Check({ id, label, checked, onChange }) {
   );
 }
 
+/**
+ * The household questions. Every change is reported at once, so the plan updates instantly.
+ * @param {{ profile: import("../lib/profile.js").Profile, onChange: (profile: import("../lib/profile.js").Profile) => void }} props
+ */
 export default function ProfileForm({ profile, onChange }) {
   const set = (patch) => onChange({ ...profile, ...patch });
   const toggleGroup = (value, checked) =>

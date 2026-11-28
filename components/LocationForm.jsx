@@ -1,5 +1,6 @@
 import { btnGhost, btnPrimary, Field, inputCls } from "./ui.jsx";
 
+/** Cities offered as one-click choices. */
 const QUICK_CITIES = [
   "Delhi",
   "Mumbai",
@@ -13,6 +14,10 @@ const QUICK_CITIES = [
   "Ahmedabad",
 ];
 
+/**
+ * The place search: a text box, a submit button and quick city choices.
+ * @param {{ query: string, onQueryChange: (text: string) => void, onSubmit: (text: string) => void, loading: boolean, error: string }} props
+ */
 export default function LocationForm({ query, onQueryChange, onSubmit, loading, error }) {
   return (
     <form

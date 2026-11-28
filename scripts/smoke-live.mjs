@@ -5,6 +5,7 @@ import { searchPlace, fetchAir } from "../services/openMeteo.js";
 import { formatClock } from "../lib/time.js";
 import { bandForAqi } from "../lib/aqi.js";
 
+/** Cities to check; each needs a live reading and at least a day of forecast. */
 const CITIES = ["Delhi", "Mumbai", "Kolkata", "Chennai", "Noida"];
 let failures = 0;
 

@@ -36,7 +36,9 @@ export function useAirReading({ onCheck } = {}) {
     }
     setAir({ status: "loading", data: null, error: "" });
     try {
-      const data = await postJson("/api/air", { query: place });
+      const data = /** @type {import("../client/api.js").AirResponse} */ (
+        await postJson("/api/air", { query: place })
+      );
       setNow(Date.now());
       setAir({ status: "ready", data, error: "" });
     } catch (error) {

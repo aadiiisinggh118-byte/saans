@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { btnAccent, Panel } from "../components/ui.jsx";
 
+/** The three things Saans gives a household, shown as cards on the home page. */
 const FEATURES = [
   {
     title: "Low-emission daily routines",
@@ -16,6 +17,7 @@ const FEATURES = [
   },
 ];
 
+/** The steps of "how it works", in order. */
 const STEPS = [
   {
     title: "Live data",
@@ -31,6 +33,7 @@ const STEPS = [
   },
 ];
 
+/** The landing page: what Saans does, why it is not just a chatbot, and how it works. */
 export default function Home() {
   return (
     <>

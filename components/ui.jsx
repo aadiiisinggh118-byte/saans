@@ -9,7 +9,7 @@ export const inputCls = "block w-full rounded-md border border-edge bg-white px-
 
 /**
  * The page title and an optional one-line introduction.
- * @param {{ title: string, children?: any }} props
+ * @param {{ title: string, children?: import("react").ReactNode }} props
  */
 export function PageHeading({ title, children }) {
   return (
@@ -22,7 +22,7 @@ export function PageHeading({ title, children }) {
 
 /**
  * A bordered section of the page.
- * @param {{ children?: any, className?: string, [attribute: string]: any }} props
+ * @param {{ children?: import("react").ReactNode, className?: string } & import("react").HTMLAttributes<HTMLElement>} props
  */
 export function Panel({ children, className = "", ...rest }) {
   return (
@@ -38,7 +38,7 @@ export function Panel({ children, className = "", ...rest }) {
 /**
  * Label + hint + error wired to the input via aria-describedby. `children` receives the props
  * to spread on the input.
- * @param {{ id: string, label: string, hint?: string, error?: string, children?: (inputProps: object) => any }} props
+ * @param {{ id: string, label: string, hint?: string, error?: string, children?: (inputProps: object) => import("react").ReactNode }} props
  */
 export function Field({ id, label, hint, error, children }) {
   const describedBy =
@@ -72,7 +72,7 @@ const TONES = {
 
 /**
  * A small coloured label.
- * @param {{ tone?: "ok" | "warn" | "bad" | "info", children?: any }} props
+ * @param {{ tone?: "ok" | "warn" | "bad" | "info", children?: import("react").ReactNode }} props
  */
 export function Badge({ tone = "info", children }) {
   return (
@@ -91,7 +91,7 @@ const NOTICE = {
 
 /**
  * A message box; use `role="alert"` on it for errors.
- * @param {{ tone?: "ok" | "warn" | "bad" | "info", children?: any, [attribute: string]: any }} props
+ * @param {{ tone?: "ok" | "warn" | "bad" | "info", children?: import("react").ReactNode } & import("react").HTMLAttributes<HTMLDivElement>} props
  */
 export function Notice({ tone = "info", children, ...rest }) {
   return (

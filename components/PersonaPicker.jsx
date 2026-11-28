@@ -1,5 +1,9 @@
 import { PERSONAS } from "../lib/personas.js";
 
+/**
+ * One-click sample households, so anyone can try the assistant without typing.
+ * @param {{ onPick: (persona: (typeof PERSONAS)[number]) => void, disabled?: boolean }} props
+ */
 export default function PersonaPicker({ onPick, disabled }) {
   return (
     <ul className="grid gap-3 sm:grid-cols-2">

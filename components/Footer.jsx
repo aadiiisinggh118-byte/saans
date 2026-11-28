@@ -1,3 +1,4 @@
+/** The footer: where the data comes from and a plain, non-medical disclaimer. */
 export default function Footer() {
   return (
     <footer className="border-t border-line">

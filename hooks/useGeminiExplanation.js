@@ -30,14 +30,16 @@ export function useGeminiExplanation({ place, profile, airStatus }) {
     const forProfile = JSON.stringify(profile);
     setAi({ ...IDLE_AI, status: "loading", forProfile });
     try {
-      const data = await postJson("/api/advice", {
-        lat: place.lat,
-        lon: place.lon,
-        name: place.label,
-        profile,
-        language,
-        question,
-      });
+      const data = /** @type {import("../client/api.js").AdviceResponse} */ (
+        await postJson("/api/advice", {
+          lat: place.lat,
+          lon: place.lon,
+          name: place.label,
+          profile,
+          language,
+          question,
+        })
+      );
       setAi({ status: "ready", data, error: "", forProfile });
     } catch (error) {
       setAi({ status: "error", data: null, error: error.message, forProfile });

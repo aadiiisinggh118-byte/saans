@@ -2,12 +2,17 @@ import "./globals.css";
 import Footer from "../components/Footer.jsx";
 import Header from "../components/Header.jsx";
 
+/** Page title and description shown in browser tabs and search results. */
 export const metadata = {
   title: "Saans: live air quality, turned into a plan for your household",
   description:
     "Check today's real air quality for your city in India and get a personal plan: when to go out, how to keep indoor air clean, and greener choices with their impact.",
 };
 
+/**
+ * The frame around every page: a skip link, the header, one main landmark and the footer.
+ * @param {{ children: import("react").ReactNode }} props
+ */
 export default function RootLayout({ children }) {
   return (
     <html lang="en">

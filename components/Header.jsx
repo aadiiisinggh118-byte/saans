@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+/** The site header with the home link and the main call to action. */
 export default function Header() {
   return (
     <header className="on-dark bg-teal-dark text-white">
